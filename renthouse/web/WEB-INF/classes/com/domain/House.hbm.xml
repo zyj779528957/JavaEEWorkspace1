@@ -1,0 +1,49 @@
+<?xml version='1.0' encoding='utf-8'?>
+<!DOCTYPE hibernate-mapping PUBLIC
+    "-//Hibernate/Hibernate Mapping DTD 3.0//EN"
+    "http://www.hibernate.org/dtd/hibernate-mapping-3.0.dtd">
+<hibernate-mapping>
+
+    <class name="com.domain.House" table="HOUSE" schema="RENTHOUSE">
+        <id name="id">
+            <column name="ID" sql-type="number(*)" precision="2147483646"/>
+            <generator class="native"/>
+        </id>
+        <property name="userId">
+            <column name="USER_ID" sql-type="number(*)" precision="2147483646" not-null="true"/>
+        </property>
+        <property name="typeId">
+            <column name="TYPE_ID" sql-type="number(*)" precision="2147483646" not-null="true"/>
+        </property>
+        <property name="title">
+            <column name="TITLE" sql-type="nvarchar2(50)" length="50" not-null="true"/>
+        </property>
+        <property name="description">
+            <column name="DESCRIPTION" sql-type="nvarchar2(2000)" length="2000" not-null="true"/>
+        </property>
+        <property name="price">
+            <column name="PRICE" sql-type="number(*)" precision="2147483646" not-null="true"/>
+        </property>
+        <property name="pubdate">
+            <column name="PUBDATE" sql-type="date" not-null="true"/>
+        </property>
+        <property name="floorage">
+            <column name="FLOORAGE" sql-type="number(*)" precision="2147483646" not-null="true"/>
+        </property>
+        <property name="contact">
+            <column name="CONTACT" sql-type="varchar2(100)" length="100" not-null="true"/>
+        </property>
+        <property name="streetId">
+            <column name="STREET_ID" sql-type="number(*)" precision="2147483646" not-null="true"/>
+        </property>
+        <many-to-one name="usersByUserId" class="com.domain.Users">
+            <column name="USER_ID" not-null="true"/>
+        </many-to-one>
+        <many-to-one name="typeByTypeId" class="com.domain.Type">
+            <column name="TYPE_ID" not-null="true"/>
+        </many-to-one>
+        <many-to-one name="streetByStreetId" class="com.domain.Street">
+            <column name="STREET_ID" not-null="true"/>
+        </many-to-one>
+    </class>
+</hibernate-mapping>
